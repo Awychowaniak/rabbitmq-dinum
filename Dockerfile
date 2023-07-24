@@ -3,6 +3,7 @@ FROM rabbitmq:3-management-alpine
 
 # Ajoute le script de démarrage
 ADD start.sh /start.sh
+ADD rabbitmq.conf /etc/rabbitmq/rabbitmq.conf
 
 # Rend le script de démarrage exécutable
 RUN chmod +x /start.sh
