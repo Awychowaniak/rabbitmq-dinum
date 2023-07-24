@@ -1,7 +1,14 @@
-FROM rabbitmq:3-management
+# Récupère l'image de base pour RabbitMQ
+FROM rabbitmq:3-management-alpine
 
-# Add a script to bootstrap when container start
-COPY rabbitmq-start.sh /rabbitmq-start.sh
-RUN chmod +x /rabbitmq-start.sh
+# Ajoute le script de démarrage
+ADD start.sh /start.sh
 
-CMD ["/rabbitmq-start.sh"]
+# Rend le script de démarrage exécutable
+RUN chmod +x /start.sh
+
+# Déclare que le conteneur écoutera sur le port 8080
+EXPOSE 8080
+
+# Définit le script de démarrage comme point d'entrée
+ENTRYPOINT ["/start.sh"]
